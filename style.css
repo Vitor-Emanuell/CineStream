@@ -1,0 +1,825 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #023047;
+  font-family: Arial, sans-serif;
+}
+
+article img {
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.03);
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.logo-text span {
+  color: #e63946;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #011627;
+  color: #ffffff;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Container de Pesquisa com Ícone */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: #90e0ef;
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.search-bar {
+  padding: 8px 16px 8px 38px; /* Espaço extra na esquerda para não encavalar no ícone */
+  border-radius: 20px;
+  border: 1px solid #1d3557;
+  background-color: #02203c;
+  color: #fff;
+  outline: none;
+  width: 200px;
+  transition:
+    width 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.search-container:focus-within .search-icon {
+  color: #e63946;
+}
+
+.search-bar:focus {
+  width: 280px;
+  border-color: #e63946;
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+}
+
+.catalog-container {
+  padding: 40px;
+}
+
+.catalog-container h1 {
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.movie-card {
+  background-color: #0d2538;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative; /* vira a âncora para a classe .rating */
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.movie-card .poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  background-color: #0d2538;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.movie-card .poster:hover {
+  transform: scale(1.05); /* zoom suave na imagem */
+}
+
+.rating {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px); /* efeito de vidro fosco */
+  color: #ffb703;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.categories {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  overflow-x: auto; /* permite rolar lateralmente no mobile */
+  padding-bottom: 8px;
+}
+
+.category-pill {
+  background: #0d2538;
+  color: #fff;
+  border: 1px solid #1d3557;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.category-pill.active,
+.category-pill:hover {
+  background: #e63946;
+  border-color: #e63946;
+}
+
+.btn-fav {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+  z-index: 5;
+}
+
+.btn-fav:hover {
+  transform: scale(1.15);
+}
+
+.btn-fav.active {
+  color: #e63946;
+}
+
+.poster {
+  display: block;
+}
+
+.movie-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.movie-info h2 {
+  color: #fff;
+  font-size: 18px;
+}
+
+.genre {
+  color: #90e0ef;
+  font-size: 13px;
+}
+
+.btn-ticket {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-ticket:hover {
+  background-color: #d62828;
+  transform: scale(1.03);
+}
+
+.featured-hero {
+  position: relative;
+  min-height: 480px; /* Aumenta a altura para exibir melhor os personagens */
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  padding: 40px 48px;
+
+  /* Camadas de imagem limpas (gradiente + foto) sem 'no-repeat' aqui */
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(1, 22, 39, 0.95) 20%,
+      rgba(1, 22, 39, 0.6) 55%,
+      rgba(1, 22, 39, 0.15) 100%
+    ),
+    url("https://rollingstone.com.br/wp-content/uploads/2025/01/interestelar-de-christopher-nolan-reestreia-nos-cinemas-brasileiros.jpg");
+
+  /* Propriedades auxiliares declaradas separadamente */
+  background-repeat: no-repeat;
+  background-position: right 20%; /* Empurra a cena para a direita e mostra os capacetes */
+  background-size: cover;
+}
+.featured-content {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1;
+}
+
+.featured-badge {
+  align-self: flex-start;
+  background-color: #e63946;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: pulseGlow 2s infinite;
+}
+
+.featured-title {
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.featured-synopsis {
+  color: #d1d5db;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.featured-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #e63946;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #d62828;
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+  .featured-hero {
+    min-height: 360px;
+    padding: 30px 24px;
+    background-image:
+      linear-gradient(
+        to top,
+        rgba(1, 22, 39, 0.95) 40%,
+        rgba(1, 22, 39, 0.4) 100%
+      ),
+      url("https://rollingstone.com.br/wp-content/uploads/2025/01/interestelar-de-christopher-nolan-reestreia-nos-cinemas-brasileiros.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-items: flex-end;
+  }
+}
+
+.featured-title {
+  font-size: 28px;
+}
+
+.featured-synopsis {
+  font-size: 14px;
+}
+
+.featured-actions {
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-primary,
+.btn-secondary {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+  .catalog-container {
+    padding: 20px;
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(230, 57, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+  }
+}
+
+.movie-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.movie-card:hover::after {
+  left: 150%;
+}
+
+.search-bar {
+  transition:
+    width 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  width: 180px;
+}
+
+.search-bar:focus {
+  width: 260px;
+  border-color: #e63946;
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+}
+
+/*MODAL COM CSS PURO (:target)*/
+
+/* Estado inicial: invisível e sem capturar cliques */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* O Segredo: quando o ID bater com o fragmento da URL (#trailer-modal) */
+.modal.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/*Camada de fundo escurecida */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 22, 39, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+/* Caixa branca/escura que guarda o vídeo */
+.modal-content {
+  position: relative;
+  z-index: 10;
+  background-color: #0d2538;
+  border: 1px solid rgba(144, 224, 239, 0.2);
+  border-radius: 14px;
+  width: 90%;
+  max-width: 720px;
+  padding: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  transform: scale(0.92) translateY(20px);
+  opacity: 0;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+}
+
+/* Efeito de zoom-in ao abrir */
+.modal.open .modal-content {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-header h2 {
+  color: #fff;
+  font-size: 20px;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #90e0ef;
+  font-size: 28px;
+  line-height: 1;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #e63946;
+  transform: scale(1.2);
+}
+
+/* Aspect Ratio 16:9 fluido para o vídeo não estourar telas menores */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /*Proporção 16:9 */
+  height: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   ESTADO VAZIO (EMPTY STATE)
+   ========================================================================== */
+.empty-state {
+  grid-column: 1 / -1; /* Ocupa todas as colunas da grade */
+  text-align: center;
+  padding: 60px 20px;
+  background-color: rgba(13, 37, 56, 0.4);
+  border: 1px dashed #1d3557;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 4px;
+}
+
+.empty-state h3 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.empty-state p {
+  color: #90e0ef;
+  font-size: 15px;
+  max-width: 420px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   SKELETON LOADING
+   ========================================================================== */
+.skeleton-card {
+  background-color: #0d2538;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  border: 1px solid #1d3557;
+  position: relative;
+}
+
+/* Efeito de brilho que se move */
+.skeleton-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.12) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Partes internas do card falso */
+.skeleton-poster {
+  width: 100%;
+  height: 340px;
+  background-color: #122c42;
+}
+
+.skeleton-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.skeleton-line {
+  height: 14px;
+  background-color: #1a3a54;
+  border-radius: 4px;
+}
+
+.skeleton-line.title {
+  height: 20px;
+  width: 80%;
+}
+
+.skeleton-line.genre {
+  width: 45%;
+}
+
+.skeleton-btn {
+  height: 36px;
+  background-color: #1a3a54;
+  border-radius: 6px;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   MODAL DE DETALHES COMPLETOS
+   ========================================================================== */
+.details-content {
+  max-width: 750px;
+  background-color: #0b1f33;
+}
+
+.details-body {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+}
+
+.details-poster {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.details-info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.details-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.badge-tag {
+  background-color: rgba(144, 224, 239, 0.15);
+  color: #90e0ef;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(144, 224, 239, 0.3);
+}
+
+.badge-tag.rating-badge {
+  background-color: #e63946;
+  color: #ffffff;
+  border: none;
+}
+
+.details-overview {
+  color: #e0e1dd;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+  .details-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .details-badges {
+    justify-content: center;
+  }
+}
+
+/* Container de botões dentro do card (Simetria perfeita 50% / 50%) */
+.movie-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.movie-actions button {
+  flex: 1 1 0; /* Garante que ambos dividam o espaço exatamente pela metade */
+  width: 50%;
+  height: 38px;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Botão Trailer */
+.btn-ticket {
+  background-color: #e63946;
+  color: #ffffff;
+  border: 1px solid #e63946;
+}
+
+.btn-ticket:hover {
+  background-color: #d62828;
+  border-color: #d62828;
+  transform: translateY(-2px);
+}
+
+/* Botão Mais Informações */
+.btn-card-info {
+  background-color: rgba(144, 224, 239, 0.12);
+  color: #90e0ef;
+  border: 1px solid rgba(144, 224, 239, 0.35);
+}
+
+.btn-card-info:hover {
+  background-color: rgba(144, 224, 239, 0.25);
+  border-color: #90e0ef;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   ROLAGEM INFINITA (SPINNER & SENTINELA)
+   ========================================================================== */
+.infinite-sentinel {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  visibility: hidden; /* Fica oculto até estar buscando uma nova página */
+}
+
+.infinite-sentinel.loading {
+  visibility: visible;
+}
+
+.scroll-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(144, 224, 239, 0.2);
+  border-top-color: #e63946;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

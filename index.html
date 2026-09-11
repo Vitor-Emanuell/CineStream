@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>CineStream - Em Cartaz</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='8' width='40' height='32' rx='6' fill='%23e63946'/><path d='M4 16H44' stroke='%23011627' stroke-width='3'/><path d='M14 8L10 16' stroke='%23011627' stroke-width='3' stroke-linecap='round'/><path d='M26 8L22 16' stroke='%23011627' stroke-width='3' stroke-linecap='round'/><path d='M38 8L34 16' stroke='%23011627' stroke-width='3' stroke-linecap='round'/><polygon points='20,22 32,28 20,34' fill='%23ffffff'/></svg>">
+</head>
+
+<body>
+
+  <header class="topbar">
+    <a href="#" class="logo">
+      <!-- Ícone de Claquete com Play -->
+      <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Fundo da Claquete -->
+        <rect x="4" y="8" width="40" height="32" rx="6" fill="#e63946" />
+        <!-- Faixas superiores da Claquete -->
+        <path d="M4 16H44" stroke="#011627" stroke-width="3" />
+        <path d="M14 8L10 16" stroke="#011627" stroke-width="3" stroke-linecap="round" />
+        <path d="M26 8L22 16" stroke="#011627" stroke-width="3" stroke-linecap="round" />
+        <path d="M38 8L34 16" stroke="#011627" stroke-width="3" stroke-linecap="round" />
+        <!-- Botão Play centralizado -->
+        <polygon points="20,22 32,28 20,34" fill="#ffffff" />
+      </svg>
+
+      <span class="logo-text">Cine<span>Stream</span></span>
+    </a>
+    <div class="search-container">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" class="search-bar" placeholder="Buscar filmes...">
+    </div>
+  </header>
+
+  <main class="catalog-container">
+
+    <!-- Destaque Principal / Hero Banner -->
+    <section class="featured-hero">
+      <div class="featured-content">
+        <span class="featured-badge">🔥 Estreia da Semana</span>
+        <h1 class="featured-title">Carregando...</h1>
+        <p class="featured-synopsis">
+          Aguardando dados da API...
+        </p>
+
+        <div class="featured-actions">
+          <button type="button" class="btn-primary">▶ Ver Trailer</button>
+          <button type="button" class="btn-secondary">ℹ Mais Informações</button>
+        </div>
+      </div>
+    </section>
+
+    <h1>Em Alta</h1>
+    <nav class="categories">
+      <button class="category-pill active">Todos</button>
+      <button class="category-pill">Favoritos</button>
+      <button class="category-pill">Ficção Científica</button>
+      <button class="category-pill">Animação</button>
+      <button class="category-pill">Ação</button>
+      <button class="category-pill">Drama</button>
+    </nav>
+
+    <section class="movies-grid">
+      <!-- O JavaScript injeta os filmes ou skeletons aqui -->
+    </section>
+
+    <!-- Sentinela e indicador de carregamento da rolagem infinita -->
+    <div id="infinite-sentinel" class="infinite-sentinel">
+      <div class="scroll-spinner"></div>
+    </div>
+  </main>
+
+  <!-- 1. Modal de Trailer -->
+  <div id="trailer-modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Trailer Oficial</h2>
+        <button type="button" class="modal-close" aria-label="Fechar trailer">&times;</button>
+      </div>
+      <div class="video-container">
+        <iframe src="" title="Trailer do Filme" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Modal de Detalhes Completos ("Mais Informações") -->
+  <div id="details-modal" class="modal">
+    <div class="modal-overlay details-overlay"></div>
+    <div class="modal-content details-content">
+      <div class="modal-header">
+        <h2 id="details-title">Carregando detalhes...</h2>
+        <button type="button" class="modal-close details-close" aria-label="Fechar detalhes">&times;</button>
+      </div>
+      <div class="details-body" id="details-body">
+        <!-- Dados carregados via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
