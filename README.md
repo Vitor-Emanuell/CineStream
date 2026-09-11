@@ -6,7 +6,7 @@ Uma aplicação web moderna para exploração de filmes e trailers em tempo real
 
 ## 🚀 Demonstração
 
-🔗 **Acesse online:** [https://SEU_USUARIO.github.io/cinestream/](https://SEU_USUARIO.github.io/cinestream/)
+🔗 **Acesse online:** [https://Vitor-Emanuell.github.io/cinestream/](https://Vitor-Emanuell.github.io/cinestream/)
 
 ---
 
@@ -40,4 +40,4 @@ Uma aplicação web moderna para exploração de filmes e trailers em tempo real
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/SEU_USUARIO/cinestream.git](https://github.com/SEU_USUARIO/cinestream.git)
+   git clone [https://github.com/Vitor-Emanuell/cinestream.git](https://github.com/Vitor-Emanuell/cinestream.git)
